@@ -32,22 +32,11 @@ A minimal macOS app to limit network bandwidth. Useful for testing how your appl
 
 Since the app is not signed with an Apple Developer certificate, macOS will block it on first launch.
 
-**Option 1: Right-click to open**
-1. Right-click (or Control-click) on `NetLimiter.app`
-2. Select "Open" from the context menu
-3. Click "Open" in the dialog that appears
-
-**Option 2: System Settings**
-1. Try to open the app normally (it will be blocked)
+1. Double-click `NetLimiter.app` to open it (you'll get a warning)
 2. Go to **System Settings → Privacy & Security**
 3. Scroll down to find the message about NetLimiter being blocked
 4. Click **"Open Anyway"**
-
-**Option 3: Terminal**
-```bash
-xattr -cr NetLimiter.app
-open NetLimiter.app
-```
+5. Click **"Open"** in the confirmation dialog
 
 ### Admin Password
 
