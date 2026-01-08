@@ -109,7 +109,9 @@ The workflow will:
 
 ### Download
 
-Pre-built releases are available on the [Releases](https://github.com/dimagoltsman/netLimiter/releases) page.
+**[Download Latest Release](https://github.com/dimagoltsman/netLimiter/releases/latest/download/NetLimiter.zip)**
+
+All releases: [Releases page](https://github.com/dimagoltsman/netLimiter/releases)
 
 ## License
 

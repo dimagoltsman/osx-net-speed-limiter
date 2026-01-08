@@ -31,9 +31,14 @@ jobs:
         with:
           swift-version: '5.9'
 
-      - name: Build Release
+      - name: Clean Build Directory
         run: |
-          swift build -c release
+          rm -rf .build
+          swift package clean || true
+
+      - name: Build Release (Universal Binary)
+        run: |
+          swift build -c release --arch arm64 --arch x86_64
 
       - name: Create App Bundle
         run: |
