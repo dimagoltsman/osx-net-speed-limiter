@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/master.swiftdeps"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/ContentView.swift": {
+    "dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/ContentView.d",
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/ContentView.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/ContentView.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/ContentView.dia"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/NetLimiterApp.swift": {
+    "dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetLimiterApp.d",
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetLimiterApp.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetLimiterApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetLimiterApp.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetLimiterApp.dia"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/NetworkLimiter.swift": {
+    "dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetworkLimiter.d",
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetworkLimiter.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetworkLimiter~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetworkLimiter.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/debug/NetLimiter.build/NetworkLimiter.dia"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "": {
+    "dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiter.d",
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiter.o",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/master.swiftdeps"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/ContentView.swift": {
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/ContentView.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/ContentView.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/ContentView.dia"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/NetLimiterApp.swift": {
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiterApp.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiterApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiterApp.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetLimiterApp.dia"
+  },
+  "/Users/dima/dev/netLimiter/NetLimiter/NetworkLimiter.swift": {
+    "object": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetworkLimiter.swift.o",
+    "swiftmodule": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetworkLimiter~partial.swiftmodule",
+    "swift-dependencies": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetworkLimiter.swiftdeps",
+    "diagnostics": "/Users/dima/dev/netLimiter/.build/arm64-apple-macosx/release/NetLimiter.build/NetworkLimiter.dia"
+  }
+}
