@@ -42,7 +42,7 @@ jobs:
       - name: Create App Bundle
         run: |
           APP_NAME="NetLimiter"
-          BUILD_DIR=".build/release"
+          BUILD_DIR=".build/apple/Products/Release"
           APP_BUNDLE="$APP_NAME.app"
 
           mkdir -p "$APP_BUNDLE/Contents/MacOS"
