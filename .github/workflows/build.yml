@@ -1,0 +1,137 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Clean Build Directory
+        run: |
+          rm -rf .build
+          swift package clean || true
+
+      - name: Build Release (Universal Binary)
+        run: |
+          swift build -c release --arch arm64 --arch x86_64
+
+      - name: Create Icon
+        run: |
+          swift create_icon.swift
+
+      - name: Create App Bundle
+        run: |
+          APP_NAME="NetLimiter"
+          BUILD_DIR=".build/apple/Products/Release"
+          APP_BUNDLE="$APP_NAME.app"
+
+          mkdir -p "$APP_BUNDLE/Contents/MacOS"
+          mkdir -p "$APP_BUNDLE/Contents/Resources"
+
+          cp "$BUILD_DIR/$APP_NAME" "$APP_BUNDLE/Contents/MacOS/"
+          cp "NetLimiter.icns" "$APP_BUNDLE/Contents/Resources/AppIcon.icns"
+
+          cat > "$APP_BUNDLE/Contents/Info.plist" << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>CFBundleName</key>
+              <string>NetLimiter</string>
+              <key>CFBundleDisplayName</key>
+              <string>NetLimiter</string>
+              <key>CFBundleIdentifier</key>
+              <string>com.dimagoltsman.netlimiter</string>
+              <key>CFBundleVersion</key>
+              <string>1.0</string>
+              <key>CFBundleShortVersionString</key>
+              <string>1.0</string>
+              <key>CFBundlePackageType</key>
+              <string>APPL</string>
+              <key>CFBundleExecutable</key>
+              <string>NetLimiter</string>
+              <key>LSMinimumSystemVersion</key>
+              <string>13.0</string>
+              <key>NSHighResolutionCapable</key>
+              <true/>
+              <key>LSUIElement</key>
+              <false/>
+              <key>CFBundleIconFile</key>
+              <string>AppIcon</string>
+          </dict>
+          </plist>
+          EOF
+
+          echo -n "APPL????" > "$APP_BUNDLE/Contents/PkgInfo"
+
+      - name: Create ZIP
+        run: |
+          zip -r NetLimiter.zip NetLimiter.app
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetLimiter
+          path: NetLimiter.zip
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "version=build-${{ github.run_number }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: github.event_name != 'pull_request'
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: NetLimiter ${{ steps.version.outputs.version }}
+          body: |
+            ## NetLimiter ${{ steps.version.outputs.version }}
+
+            macOS network bandwidth limiter for development testing.
+
+            ### Installation
+            1. Download `NetLimiter.zip`
+            2. Extract and move `NetLimiter.app` to Applications
+            3. Right-click → Open (to bypass Gatekeeper on first launch)
+
+            ### Requirements
+            - macOS 13.0 or later
+          files: NetLimiter.zip
+          draft: false
+          prerelease: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

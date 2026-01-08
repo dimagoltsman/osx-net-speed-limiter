@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(swift build:*)",
-      "Bash(chmod:*)",
-      "Bash(./build.sh:*)"
-    ]
-  }
-}
