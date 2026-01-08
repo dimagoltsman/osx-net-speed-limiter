@@ -2,6 +2,10 @@
 
 A minimal macOS app to limit network bandwidth. Useful for testing how your applications behave under slow network conditions.
 
+## Download
+
+**[Releases page](https://github.com/dimagoltsman/osx-net-speed-limiter/releases)**
+
 ## Use Cases
 
 - Test web apps on slow 3G/4G connections
@@ -21,26 +25,6 @@ A minimal macOS app to limit network bandwidth. Useful for testing how your appl
 ## Requirements
 
 - macOS 13.0 or later
-- Swift 5.9+
-
-## Building
-
-```bash
-# Clone the repo
-git clone https://github.com/dimagoltsman/osx-net-speed-limiter.git
-cd netLimiter
-
-# Build the .app bundle
-./build.sh
-```
-
-This creates `NetLimiter.app` in the project directory.
-
-## Installation
-
-```bash
-mv NetLimiter.app /Applications/
-```
 
 ## Running
 
@@ -80,38 +64,22 @@ NetLimiter uses macOS's built-in BSD traffic shaping tools:
 
 These are the same tools used by Apple's Network Link Conditioner, but with a simpler interface.
 
-## Development
+## Building from Source
+
+```bash
+git clone https://github.com/dimagoltsman/osx-net-speed-limiter.git
+cd osx-net-speed-limiter
+./build.sh
+```
+
+This creates `NetLimiter.app` in the project directory.
+
+### Development
 
 Run directly without creating .app bundle:
 ```bash
 ./run.sh
-# or
-swift build && .build/debug/NetLimiter
 ```
-
-## Releases
-
-### Creating a Release
-
-Push a tag to trigger a build and release:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-Or manually trigger from GitHub Actions → Build and Release → Run workflow.
-
-The workflow will:
-1. Build the app on macOS
-2. Create a zip archive
-3. Create a GitHub release with the artifact
-
-### Download
-
-**[Download Latest Release](https://github.com/dimagoltsman/osx-net-speed-limiter/releases/latest/download/NetLimiter.zip)**
-
-All releases: [Releases page](https://github.com/dimagoltsman/osx-net-speed-limiter/releases)
 
 ## License
 

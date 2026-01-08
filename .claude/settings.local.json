@@ -3,7 +3,8 @@
     "allow": [
       "Bash(swift build:*)",
       "Bash(chmod:*)",
-      "Bash(./build.sh:*)"
+      "Bash(./build.sh:*)",
+      "Bash(swift create_icon.swift:*)"
     ]
   }
 }

@@ -20,6 +20,11 @@ mkdir -p "$APP_BUNDLE/Contents/Resources"
 # Copy executable
 cp "$BUILD_DIR/$APP_NAME" "$APP_BUNDLE/Contents/MacOS/"
 
+# Copy icon if exists
+if [ -f "NetLimiter.icns" ]; then
+    cp "NetLimiter.icns" "$APP_BUNDLE/Contents/Resources/AppIcon.icns"
+fi
+
 # Create Info.plist
 cat > "$APP_BUNDLE/Contents/Info.plist" << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -46,6 +51,8 @@ cat > "$APP_BUNDLE/Contents/Info.plist" << 'EOF'
     <true/>
     <key>LSUIElement</key>
     <false/>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
 </dict>
 </plist>
 EOF
