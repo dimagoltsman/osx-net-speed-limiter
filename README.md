@@ -89,6 +89,28 @@ Run directly without creating .app bundle:
 swift build && .build/debug/NetLimiter
 ```
 
+## Releases
+
+### Creating a Release
+
+Push a tag to trigger a build and release:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Or manually trigger from GitHub Actions → Build and Release → Run workflow.
+
+The workflow will:
+1. Build the app on macOS
+2. Create a zip archive
+3. Create a GitHub release with the artifact
+
+### Download
+
+Pre-built releases are available on the [Releases](https://github.com/dimagoltsman/netLimiter/releases) page.
+
 ## License
 
 MIT
