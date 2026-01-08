@@ -27,7 +27,7 @@ A minimal macOS app to limit network bandwidth. Useful for testing how your appl
 
 ```bash
 # Clone the repo
-git clone https://github.com/dimagoltsman/netLimiter.git
+git clone https://github.com/dimagoltsman/osx-net-speed-limiter.git
 cd netLimiter
 
 # Build the .app bundle
@@ -109,9 +109,9 @@ The workflow will:
 
 ### Download
 
-**[Download Latest Release](https://github.com/dimagoltsman/netLimiter/releases/latest/download/NetLimiter.zip)**
+**[Download Latest Release](https://github.com/dimagoltsman/osx-net-speed-limiter/releases/latest/download/NetLimiter.zip)**
 
-All releases: [Releases page](https://github.com/dimagoltsman/netLimiter/releases)
+All releases: [Releases page](https://github.com/dimagoltsman/osx-net-speed-limiter/releases)
 
 ## License
 
