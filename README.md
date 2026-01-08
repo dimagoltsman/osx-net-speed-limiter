@@ -2,6 +2,8 @@
 
 A minimal macOS app to limit network bandwidth. Useful for testing how your applications behave under slow network conditions.
 
+![NetLimiter Screenshot](screenshot.png)
+
 ## Download
 
 **[Releases page](https://github.com/dimagoltsman/osx-net-speed-limiter/releases)**

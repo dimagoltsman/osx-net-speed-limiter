@@ -2,16 +2,17 @@ import Foundation
 
 class NetworkLimiter: ObservableObject {
     @Published var isEnabled = false
-    @Published var bandwidthKbps: Double = 1000
+    @Published var downloadKbps: Double = 100000
+    @Published var uploadKbps: Double = 100000
     @Published var lastError: String?
 
-    private let pipeNumber = 1
     private var helperProcess: Process?
     private let cmdFile = "/tmp/netlimiter_cmd"
     private let pidFile = "/tmp/netlimiter_pid"
 
     func enable() {
-        let bwString = formatBandwidth(Int(bandwidthKbps))
+        let downloadBw = formatBandwidth(Int(downloadKbps))
+        let uploadBw = formatBandwidth(Int(uploadKbps))
 
         // Clean up any previous state
         try? FileManager.default.removeItem(atPath: cmdFile)
@@ -21,10 +22,12 @@ class NetworkLimiter: ObservableObject {
         FileManager.default.createFile(atPath: cmdFile, contents: nil)
 
         // Shell script that sets up rules then polls for commands
+        // Pipe 1 = download (in), Pipe 2 = upload (out)
         let helperScript = """
-        /usr/sbin/dnctl pipe \(pipeNumber) config bw \(bwString)
-        echo 'dummynet in proto { tcp, udp } from any to any pipe \(pipeNumber)
-        dummynet out proto { tcp, udp } from any to any pipe \(pipeNumber)' | /sbin/pfctl -f -
+        /usr/sbin/dnctl pipe 1 config bw \(downloadBw)
+        /usr/sbin/dnctl pipe 2 config bw \(uploadBw)
+        echo 'dummynet in proto { tcp, udp } from any to any pipe 1
+        dummynet out proto { tcp, udp } from any to any pipe 2' | /sbin/pfctl -f -
         /sbin/pfctl -e 2>/dev/null || true
         echo $$ > \(pidFile)
         while true; do
@@ -98,11 +101,23 @@ class NetworkLimiter: ObservableObject {
         isEnabled = false
     }
 
-    func updateBandwidth() {
+    func updateDownload() {
         guard isEnabled else { return }
+        let bw = formatBandwidth(Int(downloadKbps))
+        sendCommand("/usr/sbin/dnctl pipe 1 config bw \(bw)")
+    }
 
-        let bwString = formatBandwidth(Int(bandwidthKbps))
-        sendCommand("/usr/sbin/dnctl pipe \(pipeNumber) config bw \(bwString)")
+    func updateUpload() {
+        guard isEnabled else { return }
+        let bw = formatBandwidth(Int(uploadKbps))
+        sendCommand("/usr/sbin/dnctl pipe 2 config bw \(bw)")
+    }
+
+    func updateBoth() {
+        guard isEnabled else { return }
+        let dlBw = formatBandwidth(Int(downloadKbps))
+        let ulBw = formatBandwidth(Int(uploadKbps))
+        sendCommand("/usr/sbin/dnctl pipe 1 config bw \(dlBw); /usr/sbin/dnctl pipe 2 config bw \(ulBw)")
     }
 
     private func sendCommand(_ command: String) {
